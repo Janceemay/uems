@@ -471,7 +471,7 @@ def register_for_event(request, pk):
                 attendee.user = request.user
             attendee.save()
             messages.success(request, "You have successfully registered for the event!")
-            return redirect(event.get_absolute_url())
+            return redirect("event_list")
     else:
         form = AttendeeForm()
     return render(request, 'events/register.html', {'form': form, 'event': event})
