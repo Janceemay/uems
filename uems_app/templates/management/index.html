@@ -7,111 +7,73 @@
     <div class="row">
         <div class="col-md-12">
             <h1 class="fw-bolder">System Management</h1>
-            <span>You may manage the system as a whole from this screen.</span>
+            <span>Listed are options for managing the system. Please choose the area you wish to manage.</span>
         </div>
     </div>
 </div>
 <div class="uems-body">
-    <div class="row">
-        <section class="d-flex flex-row align-items-center justify-content-between">
-            <h1>Users</h1>
-            <button class="btn btn-success" type="button">+ New User</button>
-        </section>
-        <span>Here is a list of users registered in the system.</span>
-        <table class="table table-border table-hover table-striped" id="users-table">
-            <thead>
-                <tr>
-                    <th>ID</th>
-                    <th>Username</th>
-                    <th>Role</th>
-                    <th>Joined on</th>
-                    <th>Last Login</th>
-                    <th>Actions</th>
-                </tr>
-            </thead>
-            <tbody>
-                {% if users %}
-                    {% for user in users %}
-                        <tr>
-                            <td>{{ user.id }}</td>
-                            <td>{{ user.username }}</td>
-                            <td>
-                                {% if user.is_superuser or user.is_staff %}
-                                    Admin
-                                {% else %}
-                                    User
-                                {% endif %}
-                            </td>
-                            <td>{{ user.date_joined }}</td>
-                            <td>{{ user.last_login }}</td>
-                            <td>
-                                None
-                            </td>
-                        </tr>
-                    {% endfor %}
-                {% endif %}
-            </tbody>
-        </table>
+    <div class="row d-flex flex-row justify-content-center">
+        <div class="col-md-3 d-flex justify-content-center">
+            <a class="card text-decoration-none w-100" href="users">
+                <div class="card-body d-flex flex-column align-items-center justify-content-between gap-3 shadow">
+                    <div class="rounded-circle rounded-3 p-3"
+                        style="background: linear-gradient(135deg, #009639 0%, #00c851 100%);">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" fill="white" class="bi bi-person" viewBox="0 0 16 16">
+                            <path d="M8 8a3 3 0 1 0 0-6 3 3 0 0 0 0 6m2-3a2 2 0 1 1-4 0 2 2 0 0 1 4 0m4 8c0 1-1 1-1 1H3s-1 0-1-1 1-4 6-4 6 3 6 4m-1-.004c-.001-.246-.154-.986-.832-1.664C11.516 10.68 10.289 10 8 10s-3.516.68-4.168 1.332c-.678.678-.83 1.418-.832 1.664z"/>
+                        </svg>
+                    </div>
+                    <h2 class="fw-bolder text-center">User Management</h2>
+                    <p>Offers management of all users who are registered in the system.</p>
+                </div>
+            </a>
+        </div>
+        <div class="col-md-3 d-flex justify-content-center">
+            <a class="card text-decoration-none w-100" href="/events">
+                <div class="card-body d-flex flex-column align-items-center justify-content-between gap-3 shadow">
+                    <div class="rounded-circle rounded-3 p-3"
+                        style="background: linear-gradient(135deg, #009639 0%, #00c851 100%);">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" fill="white" class="bi bi-calendar-event" viewBox="0 0 16 16">
+                            <path d="M11 6.5a.5.5 0 0 1 .5-.5h1a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.5.5h-1a.5.5 0 0 1-.5-.5z"/>
+                            <path d="M3.5 0a.5.5 0 0 1 .5.5V1h8V.5a.5.5 0 0 1 1 0V1h1a2 2 0 0 1 2 2v11a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V3a2 2 0 0 1 2-2h1V.5a.5.5 0 0 1 .5-.5M1 4v10a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1V4z"/>
+                        </svg>
+                    </div>
+                    <h2 class="fw-bolder text-center">Events Management</h2>
+                    <p>Offers management of all events who are added to the system.</p>
+                </div>
+            </a>
+        </div>
+        <div class="col-md-3 d-flex justify-content-center">
+            <a class="card text-decoration-none w-100" href="tickets">
+                <div class="card-body d-flex flex-column align-items-center justify-content-between gap-3 shadow">
+                    <div class="rounded-circle rounded-3 p-3"
+                        style="background: linear-gradient(135deg, #009639 0%, #00c851 100%);">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" fill="white" class="bi bi-ticket-detailed" viewBox="0 0 16 16">
+                            <path d="M4 5.5a.5.5 0 0 1 .5-.5h7a.5.5 0 0 1 0 1h-7a.5.5 0 0 1-.5-.5m0 5a.5.5 0 0 1 .5-.5h7a.5.5 0 0 1 0 1h-7a.5.5 0 0 1-.5-.5M5 7a1 1 0 0 0 0 2h6a1 1 0 1 0 0-2z"/>
+                            <path d="M0 4.5A1.5 1.5 0 0 1 1.5 3h13A1.5 1.5 0 0 1 16 4.5V6a.5.5 0 0 1-.5.5 1.5 1.5 0 0 0 0 3 .5.5 0 0 1 .5.5v1.5a1.5 1.5 0 0 1-1.5 1.5h-13A1.5 1.5 0 0 1 0 11.5V10a.5.5 0 0 1 .5-.5 1.5 1.5 0 1 0 0-3A.5.5 0 0 1 0 6zM1.5 4a.5.5 0 0 0-.5.5v1.05a2.5 2.5 0 0 1 0 4.9v1.05a.5.5 0 0 0 .5.5h13a.5.5 0 0 0 .5-.5v-1.05a2.5 2.5 0 0 1 0-4.9V4.5a.5.5 0 0 0-.5-.5z"/>
+                        </svg>
+                    </div>
+                    <h2 class="fw-bolder text-center">Tickets Management</h2>
+                    <p>Offers management of all tickets who are linked to events and are added to the system.</p>
+                </div>
+            </a>
+        </div>
+        <div class="col-md-3 d-flex justify-content-center">
+            <a class="card text-decoration-none w-100" href="venues">
+                <div class="card-body d-flex flex-column align-items-center justify-content-between gap-3 shadow">
+                    <div class="rounded-circle rounded-3 p-3"
+                        style="background: linear-gradient(135deg, #009639 0%, #00c851 100%);">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" fill="white" class="bi bi-geo-alt-fill" viewBox="0 0 16 16">
+                            <path d="M8 16s6-5.686 6-10A6 6 0 0 0 2 6c0 4.314 6 10 6 10m0-7a3 3 0 1 1 0-6 3 3 0 0 1 0 6"/>
+                        </svg>
+                    </div>
+                    <h2 class="fw-bolder text-center">Venues Management</h2>
+                    <p>Offers management of all venues who are added to the system.</p>
+                </div>
+            </a>
+        </div>
     </div>
-    <div class="row">
-        <section class="d-flex flex-row align-items-center justify-content-between">
-            <h1>Events</h1>
-            <button class="btn btn-success" type="button">+ New Event</button>
-        </section>
-        <table class="table table-border table-hover table-striped" id="events-table">
-            <thead>
-                <tr>
-                    <th>ID</th>
-                    <th>Title</th>
-                    <th>Description</th>
-                    <th>From Date</th>
-                    <th>To Date</th>
-                    <th>Organizer</th>
-                    <th>Venue</th>
-                    <th>Max Attendees</th>
-                    <th>Public</th>
-                    <th>Actions</th>
-                </tr>
-            </thead>
-            <tbody>
-                {% if events %}
-                    {% for event in events %}
-                        <tr>
-                            <td>{{ event.id }}</td>
-                            <td>{{ event.title }}</td>
-                            <td>{{ event.description|truncatechars:10 }}</td>
-                            <td>{{ event.from_date }}</td>
-                            <td>{{ event.to_date }}</td>
-                            <td>{{ event.organizer_id }}</td>
-                            <td>{{ event.venue_id }}</td>
-                            <td>{{ event.max_attendees }}</td>
-                            <td>{{ event.is_public }}</td>
-                            <td>
-                                none
-                            </td>
-                        </tr>
-                    {% endfor %}
-                {% endif %}
-            </tbody>
-        </table>
-    </div>
-    <div class="row">
-        <section class="d-flex flex-row align-items-center justify-content-between">
-            <h1>Organizers</h1>
-            <button class="btn btn-success" type="button">+ New Organizer</button>
-        </section>
-    </div>
-    <div class="row">
-        <section class="d-flex flex-row align-items-center justify-content-between">
-            <h1>Tickets</h1>
-            <button class="btn btn-success" type="button">+ New Ticket</button>
-        </section>
-    </div>
-    <div class="row">
-        <section class="d-flex flex-row align-items-center justify-content-between">
-            <h1>Venues</h1>
-            <button class="btn btn-success" type="button">+ New Venue</button>
-        </section>
+    <div class="d-flex flex-wrap justify-content-evenly gap-2">
+        
     </div>
 </div>
 {% endblock %}
@@ -119,8 +81,7 @@
 {% block script %}
 <script>
     $(document).ready(function () {
-        $("#users-table").DataTable();
-        $("#events-table").DataTable();
+        
     });
 </script>
 {% endblock %}

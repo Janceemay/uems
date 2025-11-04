@@ -1,0 +1,56 @@
+{% extends "master.html" %}
+
+{% block title %}Dashboard | UEMS{% endblock %}
+
+{% block content %}
+<div class="uems-header">
+    <div class="row">
+        <div class="col-md-12">
+            <h1 class="fw-bolder">Organizers Management</h1>
+            <span>You may manage the organizers as a whole from this screen.</span>
+        </div>
+    </div>
+</div>
+<div class="uems-body">
+    <div class="row">
+        <section class="d-flex flex-row align-items-center justify-content-between">
+            <h1>Organizers</h1>
+            <button class="btn btn-success" type="button">+ New Organizer</button>
+        </section>
+        <table class="table table-border table-hover table-striped" id="organizers-table">
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Name</th>
+                    <th>Contact Email</th>
+                    <th>Phone</th>
+                    <th>User</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% if organizers %}
+                    {% for organizer in organizers %}
+                        <tr>
+                            <td>{{ organizer.id }}</td>
+                            <td>{{ organizer.name }}</td>
+                            <td>{{ organizer.contact_email }}</td>
+                            <td>{{ organizer.phone }}</td>
+                            <td>{{ organizer.user_id }}</td>
+                            <td>None</td>
+                        </tr>
+                    {% endfor %}
+                {% endif %}
+            </tbody>
+        </table>
+    </div>
+</div>
+{% endblock %}
+
+{% block script %}
+<script>
+    $(document).ready(function () {
+        $("#organizers-table").DataTable();
+    });
+</script>
+{% endblock %}

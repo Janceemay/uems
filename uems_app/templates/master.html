@@ -71,7 +71,7 @@
                                     href="/profile">Profile</a></li>
                             {% if request.user.is_superuser or request.user.is_staff %}
                             <li class="navbar-item ms-3"><a
-                                    class="text-decoration-none text-black {% if request.get_full_path == '/management/' %}fw-bolder{% endif %}"
+                                    class="text-decoration-none text-black {% if '/management/' in request.get_full_path %}fw-bolder{% endif %}"
                                     href="/management">Management</a></li>
                             {% endif %}
                         </ul>

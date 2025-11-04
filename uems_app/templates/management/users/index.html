@@ -1,0 +1,73 @@
+{% extends "master.html" %}
+
+{% block title %}Dashboard | UEMS{% endblock %}
+
+{% block content %}
+<div class="uems-header">
+    <div class="row">
+        <div class="col-md-12">
+            <section class="d-flex flex-row gap-2 align-items-center">
+                <a class="btn btn-secondary d-flex flex-row align-items-center gap-1" href="/management/">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="white" class="bi bi-caret-left-fill" viewBox="0 0 16 16">
+                        <path d="m3.86 8.753 5.482 4.796c.646.566 1.658.106 1.658-.753V3.204a1 1 0 0 0-1.659-.753l-5.48 4.796a1 1 0 0 0 0 1.506z"/>
+                    </svg>
+                    Return
+                </a>
+            </section>
+            <h1 class="fw-bolder">User Management</h1>
+            <span>You may manage the users registered as a whole from this screen.</span>
+        </div>
+    </div>
+</div>
+<div class="uems-body">
+    <div class="row">
+        <section class="d-flex flex-row align-items-center justify-content-between">
+            <h1>Users</h1>
+            <button class="btn btn-success" type="button">+ New User</button>
+        </section>
+        <span>Here is a list of users registered in the system. For user privacy, some details are omitted in editing and display.</span>
+        <table class="table table-border table-hover table-striped" id="users-table">
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Username</th>
+                    <th>Role</th>
+                    <th>Joined on</th>
+                    <th>Last Login</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% if users %}
+                    {% for user in users %}
+                        <tr>
+                            <td>{{ user.id }}</td>
+                            <td>{{ user.username }}</td>
+                            <td>
+                                {% if user.is_superuser or user.is_staff %}
+                                    Admin
+                                {% else %}
+                                    User
+                                {% endif %}
+                            </td>
+                            <td>{{ user.date_joined }}</td>
+                            <td>{{ user.last_login }}</td>
+                            <td>
+                                None
+                            </td>
+                        </tr>
+                    {% endfor %}
+                {% endif %}
+            </tbody>
+        </table>
+    </div>
+</div>
+{% endblock %}
+
+{% block script %}
+<script>
+    $(document).ready(function () {
+        $("#users-table").DataTable();
+    });
+</script>
+{% endblock %}
