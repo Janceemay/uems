@@ -210,12 +210,13 @@ def users_view(request):
         if not request.user.is_superuser or not request.user.is_staff:
             return redirect("login")
         else:
-            if not request.user.role is "admin":
-                return redirect("dashboard")
-            else:
+            if request.user.is_admin():
                 users = User.objects.all()
 
                 return render(request, "management/users/index.html", {"users": users})
+            else:
+                return redirect("dashboard")
+                
 
 def create_user_view(request):
     if not request.user.is_authenticated:
